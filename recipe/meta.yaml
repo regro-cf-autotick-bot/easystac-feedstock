@@ -10,24 +10,26 @@ source:
   sha256: 9c2f962098f8db1c543e5141ecdb0ea7cecf79a24a9abd8f0946c14da16e5bf3
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: "{{ PYTHON }} -m pip install . -vv"
 
 requirements:
   host:
     - pip
-    - python >=3.8
+    - python {{ python_min }}
   run:
     - planetary-computer
     - pystac-client
-    - python >=3.8
+    - python >={{ python_min }}
     - radiant-mlhub
     - six
     - stackstac
     - termcolor
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - easystac
     - easystac.planetary
